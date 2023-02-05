@@ -38,3 +38,11 @@ stories:
     entities:
       - name: "Xavier Serra"
   - action: utter_room
+
+
+- story: dtic degrees path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: dtic_degrees
+  - action: action_dtic_degrees
