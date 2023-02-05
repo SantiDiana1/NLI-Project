@@ -1,48 +1,52 @@
 version: "3.1"
 
 stories:
+  - story: happy path
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
 
-- story: happy path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
+  - story: sad path 1
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
 
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
+  - story: sad path 2
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: deny
+      - action: utter_goodbye
 
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
+  - story: find professor room
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: find_room
+        entities:
+          - name: "Xavier Serra"
+      - action: utter_room
 
+  - story: dtic degrees path 1
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: list_dtic_degrees
+      - action: action_list_dtic_degrees
 
-- story: find professor room
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: find_room
-    entities:
-      - name: "Xavier Serra"
-  - action: utter_room
-
-
-- story: dtic degrees path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: dtic_degrees
-  - action: action_dtic_degrees
+  - story: dtic degrees path 2
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: give_degree_desc
+      - action: action_give_degree_desc

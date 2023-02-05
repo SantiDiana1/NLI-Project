@@ -13,9 +13,9 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
 
-class ActionDticDegrees(Action):
+class ActionListDticDegrees(Action):
     def name(self) -> Text:
-        return "action_dtic_degrees"
+        return "action_list_dtic_degrees"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
@@ -36,3 +36,35 @@ class ActionDticDegrees(Action):
         else:  # the list is empty
             dispatcher.utter_message(
                 f"I could not find any degrees at Universitat Pompeu Fabra :/")
+
+
+class ActionGiveDegreeDesc(Action):
+    def name(self) -> Text:
+        return "action_give_degree_desc"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        degree_name = tracker.get_slot('degree_name')
+
+        with open('./data/dtic_degrees.csv') as file:
+            reader = csv.DictReader(file)
+            degree_info = None
+
+            for row in reader:
+                if row['name'] == degree_name:
+                    degree_info = row
+
+        if degree_info:
+            # build your reply according to the output
+            reply = f"Here is the description for the " + \
+                degree_info['type'] + " in " + degree_info['name'] + ":"
+
+            reply += "\n" + degree_info['description']
+            # utter the message
+            dispatcher.utter_message(reply)
+
+        else:  # the list is empty
+            dispatcher.utter_message(
+                f"I could not find what you requested :/")

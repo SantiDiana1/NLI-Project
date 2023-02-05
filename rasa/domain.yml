@@ -9,7 +9,19 @@ intents:
   - mood_unhappy
   - bot_challenge
   - find_room
-  - dtic_degrees
+  - list_dtic_degrees
+  - give_degree_desc
+
+entities:
+  - degree_name
+
+slots:
+  degree_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: degree_name
 
 responses:
   utter_greet:
@@ -35,7 +47,8 @@ responses:
     - text: "The room of the professor is 1"
 
 actions:
-  - action_dtic_degrees
+  - action_list_dtic_degrees
+  - action_give_degree_desc
 
 session_config:
   session_expiration_time: 60

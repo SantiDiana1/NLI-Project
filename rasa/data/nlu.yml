@@ -94,11 +94,16 @@ nlu:
     examples: |
       - which is the room of a professor?
 
-  - intent: dtic_degrees
+  - intent: list_dtic_degrees
     examples: |
       - what is the list of dtic degrees?
       - what are the different dtic degrees available?
       - Give me the list of DTIC degrees at UPF
+
+  - intent: give_degree_desc
+    examples: |
+      - What is the master in [sound and music computing](degree_name) about?
+      - Give me information about the bachelor in [computer engineering](degree_name)
 
   # Type of intents we should take into account:
   #- Know about DTIC degrees
