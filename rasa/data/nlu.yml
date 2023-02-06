@@ -90,10 +90,6 @@ nlu:
       - am I talking to a bot?
       - am I talking to a human?
 
-  - intent: find_room
-    examples: |
-      - which is the room of a professor?
-
   - intent: list_dtic_degrees
     examples: |
       - what is the list of dtic degrees?
@@ -104,6 +100,11 @@ nlu:
     examples: |
       - What is the master in [sound and music computing](degree_name) about?
       - Give me information about the bachelor in [computer engineering](degree_name)
+
+  - intent: give_person_room
+    examples: |
+      - Where is [Frederic](person_name) [Font](person_surname) room?
+      - Where is [Frederic](person_name) [Font](person_surname) located?
 
   # Type of intents we should take into account:
   #- Know about DTIC degrees

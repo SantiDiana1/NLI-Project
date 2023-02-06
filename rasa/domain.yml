@@ -8,12 +8,14 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
-  - find_room
   - list_dtic_degrees
   - give_degree_desc
+  - give_person_room
 
 entities:
   - degree_name
+  - person_name
+  - person_surname
 
 slots:
   degree_name:
@@ -22,6 +24,20 @@ slots:
     mappings:
       - type: from_entity
         entity: degree_name
+
+  person_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: person_name
+
+  person_surname:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: person_surname
 
 responses:
   utter_greet:
@@ -43,12 +59,10 @@ responses:
   utter_iamabot:
     - text: "I am a bot, powered by Rasa."
 
-  utter_room:
-    - text: "The room of the professor is 1"
-
 actions:
   - action_list_dtic_degrees
   - action_give_degree_desc
+  - action_give_person_room
 
 session_config:
   session_expiration_time: 60

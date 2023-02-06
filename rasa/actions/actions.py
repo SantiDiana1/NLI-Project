@@ -68,3 +68,26 @@ class ActionGiveDegreeDesc(Action):
         else:  # the list is empty
             dispatcher.utter_message(
                 f"I could not find what you requested :/")
+
+
+class ActionGivePersonRoom(Action):
+    def name(self) -> Text:
+        return "action_give_person_room"
+
+    def run(self, dispatcher, tracker, domain):
+        person_name = tracker.get_slot("person_name")
+        person_surname = tracker.get_slot("person_surname")
+        room = None
+        with open('./data/People.csv') as file:
+            reader = csv.DictReader(file)
+
+            for row in reader:
+                if row['NAME'] == person_name and row['SURNAME'] == person_surname:
+                    room = row['ROOM']
+                    response = f"The room of {person_name,person_surname} is {room}"
+                    dispatcher.utter_message(response)
+                    return []
+
+                if room == None:
+                    dispatcher.utter_message(
+                        f"I'm sorry, I couldn't find a room for {person_name}.")
