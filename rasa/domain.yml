@@ -11,11 +11,13 @@ intents:
   - list_dtic_degrees
   - give_degree_desc
   - give_person_room
+  - list_dpt_people
 
 entities:
   - degree_name
   - person_name
   - person_surname
+  - department
 
 slots:
   degree_name:
@@ -63,6 +65,7 @@ actions:
   - action_list_dtic_degrees
   - action_give_degree_desc
   - action_give_person_room
+  - action_list_dpt_people
 
 session_config:
   session_expiration_time: 60

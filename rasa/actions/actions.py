@@ -26,7 +26,7 @@ class ActionListDticDegrees(Action):
 
         if output:  # there is at least one value
             # build your reply according to the output
-            reply = f"Here is the list of degrees at Universitat Pompeu Fabra:"
+            reply = f"Here is the list of degrees at universitat pompeu fabra:"
             reply += "\n- " + \
                 "\n- ".join([item['type'] + " in " + item['name']
                             for item in output])
@@ -69,6 +69,8 @@ class ActionGiveDegreeDesc(Action):
             dispatcher.utter_message(
                 f"I could not find what you requested :/")
 
+# TODO: handle synonyms
+
 
 class ActionGivePersonRoom(Action):
     def name(self) -> Text:
@@ -78,11 +80,11 @@ class ActionGivePersonRoom(Action):
         person_name = tracker.get_slot("person_name")
         person_surname = tracker.get_slot("person_surname")
         room = None
-        with open('./data/People.csv') as file:
+        with open('./data/people.csv') as file:
             reader = csv.DictReader(file)
 
             for row in reader:
-                if row['NAME'] == person_name and row['SURNAME'] == person_surname:
+                if row['NAME'].lower().strip() == person_name and row['SURNAME'].lower().strip() == person_surname:
                     room = row['ROOM']
                     response = f"The room of {person_name,person_surname} is {room}"
                     dispatcher.utter_message(response)
@@ -91,3 +93,33 @@ class ActionGivePersonRoom(Action):
                 if room == None:
                     dispatcher.utter_message(
                         f"I'm sorry, I couldn't find a room for {person_name}.")
+
+
+class ActionListDptPeople(Action):
+    def name(self) -> Text:
+        return "action_list_dpt_people"
+
+    def run(self, dispatcher, tracker, domain):
+        department = next(tracker.get_latest_entity_values("department"), None)
+        with open('./data/people.csv') as file:
+            reader = csv.DictReader(file)
+
+            dpt_people = []
+            for row in reader:
+                if row['DEPARTMENT'].lower().strip() == department.lower().strip():
+                    dpt_people.append(row['NAME'].lower().strip().title(
+                    ) + ' ' + row['SURNAME'].lower().strip().title())
+
+            if dpt_people:  # there is at least one value
+                # build your reply according to the output
+                reply = f"Here is the list of people in the " + \
+                    row['DEPARTMENT'].lower().strip().capitalize() + \
+                    " department:"
+                reply += "\n- " + \
+                    "\n- ".join([person for person in dpt_people])
+                # utter the message
+                dispatcher.utter_message(reply)
+
+            else:  # the list is empty
+                dispatcher.utter_message(
+                    f"The department does not exist or we could't find anyone :/")

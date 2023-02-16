@@ -106,6 +106,18 @@ nlu:
       - Where is [Frederic](person_name) [Font](person_surname) room?
       - Where is [Frederic](person_name) [Font](person_surname) located?
 
+  - intent: list_dpt_people
+    examples: |
+      - Give me the list of people in the [Music Technology Group](department)?
+      - Who is in the [MTG](department)?
+      - Who is in the [Music Technology department](department)?
+
+  - synonym: MTG
+    examples: |
+      - Music and Technology Group
+      - Music Technology group
+      - Music Technology department
+
   # Type of intents we should take into account:
   #- Know about DTIC degrees
   #- Know about DTIC masters

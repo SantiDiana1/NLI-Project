@@ -48,3 +48,10 @@ stories:
       - action: utter_greet
       - intent: give_person_room
       - action: action_give_person_room
+
+  - story: list people in department
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: list_dpt_people
+      - action: action_list_dpt_people
