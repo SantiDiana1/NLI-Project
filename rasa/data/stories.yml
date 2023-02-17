@@ -46,8 +46,8 @@ stories:
     steps:
       - intent: greet
       - action: utter_greet
-      - intent: give_person_room
-      - action: action_give_person_room
+      - intent: give_person_location
+      - action: action_give_person_location
 
   - story: list people in department
     steps:

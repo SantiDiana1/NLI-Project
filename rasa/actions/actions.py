@@ -69,12 +69,10 @@ class ActionGiveDegreeDesc(Action):
             dispatcher.utter_message(
                 f"I could not find what you requested :/")
 
-# TODO: handle synonyms
 
-
-class ActionGivePersonRoom(Action):
+class ActionGivePersonLocation(Action):
     def name(self) -> Text:
-        return "action_give_person_room"
+        return "action_give_person_location"
 
     def run(self, dispatcher, tracker, domain):
         person_name = tracker.get_slot("person_name")
@@ -82,17 +80,18 @@ class ActionGivePersonRoom(Action):
         room = None
         with open('./data/people.csv') as file:
             reader = csv.DictReader(file)
-
             for row in reader:
-                if row['NAME'].lower().strip() == person_name and row['SURNAME'].lower().strip() == person_surname:
+                if row['NAME'].lower().strip() == person_name.lower() and row['SURNAME'].lower().strip() == person_surname.lower():
                     room = row['ROOM']
-                    response = f"The room of {person_name,person_surname} is {room}"
-                    dispatcher.utter_message(response)
-                    return []
+                    building = row['BUILDING']
+                    break
 
-                if room == None:
-                    dispatcher.utter_message(
-                        f"I'm sorry, I couldn't find a room for {person_name}.")
+            if room == None or building == None:
+                dispatcher.utter_message(
+                    f"I'm sorry, I couldn't find {person_name, person_surname}")
+            else:
+                response = f"{person_name} {person_surname} is in the room {room} in {building}"
+                dispatcher.utter_message(response)
 
 
 class ActionListDptPeople(Action):

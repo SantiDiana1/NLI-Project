@@ -101,10 +101,10 @@ nlu:
       - What is the master in [sound and music computing](degree_name) about?
       - Give me information about the bachelor in [computer engineering](degree_name)
 
-  - intent: give_person_room
+  - intent: give_person_location
     examples: |
-      - Where is [Frederic](person_name) [Font](person_surname) room?
       - Where is [Frederic](person_name) [Font](person_surname) located?
+      - Where can I find [Jorge](person_name) [Lobo](person_surname)?
 
   - intent: list_dpt_people
     examples: |
