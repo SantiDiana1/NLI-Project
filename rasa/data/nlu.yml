@@ -108,15 +108,124 @@ nlu:
 
   - intent: list_dpt_people
     examples: |
-      - Give me the list of people in the [Music Technology Group](department)?
       - Who is in the [MTG](department)?
+      - Give me the list of people in the [Music Technology Group](department)?
       - Who is in the [Music Technology department](department)?
+      - Who is in the [BERG](department)?
+      - Who is in the [Biomedical Electronics Research Group](department)?
+      - Who is in the [AI and ML group](department)?
+      - Who is in the [CMTECH](department)?
+      - Who is in the [Cognitive Media Technologies group](department)?
+      - Who is in the [Image processing for enhanced cinematography](department) group?
+      - Who is in the [IP4EC](department)?
+      - Who is in the [Image processing group](department)?
+      - Who is in the [IPG](department)?
+      - Who is in the [Information Theory and Coding Group](department)?
+      - Who is in the [ITG](department)?
+      - Who is in the [Interactive Technologies Group](department)?
+      - Who is in the [ITC](department)?
+      - Who is in the [NLP](department) group?
+      - Who is in the [Natural Language Processing](department) department?
+      - Give me the list of people in the [NETS](department)
+      - Give me the list of people in the [Network Technologies and Strategies Group](department)
+      - Who is in the [NTSA](department)?
+      - Who is in the [Nonlinear Time Series Analysis Group](department)?
+      - Who is in the [Physense](department) department?
+      - Who is in the [Sensing in Physiology and Biomedicine Group](department)?
+      - Who is in the [Research Service](department)?
+      - Who is in the [SIMBIOsys](department)?
+      - Who is in the [Simulation Imaging and Modelling for Biomedical Systems](department) department?
+      - Who is in the [TALN](department) department?
+      - Who is in the [TIDE](department) department?
+      - Who is in the [Interactive & Distributed Technologies for Education](department) department?
+      - Who is in the [UBICALAB](department)?
+      - Who is in thee [Ubiquitous Computing Applications Lab](department)?
+      - Who is in the [UGA TIC](department)?
+      - Who is in the [Polytecnic School](department)?
+      - Who is in the [WN](department) group?
+      - Who is in the [Wireless Networking Group](department)?
+      - Who is in the [WSSC](department) department?
+      - Who is in the [Web Science and Social Computing](department) department?
+      -
 
   - synonym: MTG
     examples: |
       - Music and Technology Group
-      - Music Technology group
       - Music Technology department
+
+  - synonym: AI&ML
+    examples: |
+      - Artificial Intelligence and Machine Learning Group
+      - AI and ML
+
+  - synonym: BERG
+    examples: |
+      - Biomedical Electronics Research Group
+
+  - synonym: CMTECH
+    examples: |
+      - Cognitive Media Technologies group
+
+  - synonym: IP4EC
+    examples: |
+      - Image processing for enhanced cinematography
+
+  - synonym: IPG
+    examples: |
+      - Image processing group
+
+  - synonym: ITC
+    examples: |
+      - Information Theory and Coding Group
+
+  - synonym: ITG
+    examples: |
+      - Interactive Technologies Group
+
+  - synonym: NETS
+    examples: |
+      - Network Technologies and Strategies Group
+
+  - synonym: NTSA
+    examples: |
+      - Nonlinear Time Series Analysis Group
+
+  - synonym: Physense
+    examples: |
+      - Sensing in Physiology and Biomedicine Group
+
+  - synonym: Research_Service
+    examples: |
+      - Research Service
+
+  - synonym: SIMBIOsys
+    examples: |
+      - Simulation Imaging and Modelling for Biomedical Systems
+
+  - synonym: TALN
+    examples: |
+      - Natural Language Processing
+
+  - synonym: TIDE
+    examples: |
+      - Interactive & Distributed Technologies for Education
+
+  - synonym: UBICALAB
+    examples: |
+      - Ubiquitous Computing Applications Lab
+
+  - synonym: UGA_TIC
+    examples: |
+      - UGA TIC
+      - Polytecnic School
+
+  - synonym: WN
+    examples: |
+      - Wireless Networking Group
+
+  - synonym: WSSC
+    examples: |
+      - Web Science and Social Computing
 
   # Type of intents we should take into account:
   #- Know about DTIC degrees

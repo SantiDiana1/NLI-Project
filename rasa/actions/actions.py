@@ -26,7 +26,7 @@ class ActionListDticDegrees(Action):
 
         if output:  # there is at least one value
             # build your reply according to the output
-            reply = f"Here is the list of degrees at universitat pompeu fabra:"
+            reply = f"Here is the list of degrees at Universitat Pompeu Fabra:"
             reply += "\n- " + \
                 "\n- ".join([item['type'] + " in " + item['name']
                             for item in output])
@@ -113,7 +113,7 @@ class ActionListDptPeople(Action):
             if dpt_people:  # there is at least one value
                 # build your reply according to the output
                 reply = f"Here is the list of people in the " + \
-                    row['DEPARTMENT'].lower().strip().capitalize() + \
+                    department.title() + \
                     " department:"
                 reply += "\n- " + \
                     "\n- ".join([person for person in dpt_people])
