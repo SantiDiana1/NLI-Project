@@ -46,14 +46,16 @@ class ActionGiveDegreeDesc(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        degree_name = tracker.get_slot('degree_name')
+        degree_name = next(
+            tracker.get_latest_entity_values("degree_name"), None)
+        print(degree_name)
 
         with open('./data/dtic_degrees.csv') as file:
             reader = csv.DictReader(file)
             degree_info = None
 
             for row in reader:
-                if row['name'] == degree_name:
+                if row['name'].lower().split() == degree_name.lower().split():
                     degree_info = row
 
         if degree_info:
@@ -62,6 +64,11 @@ class ActionGiveDegreeDesc(Action):
                 degree_info['type'] + " in " + degree_info['name'] + ":"
 
             reply += "\n" + degree_info['description']
+
+            # if number of places offered are known
+            if degree_info['places'] != -1:
+                reply += "\n" + \
+                    f"There are {degree_info['places']} places offered for this programme."
             # utter the message
             dispatcher.utter_message(reply)
 
