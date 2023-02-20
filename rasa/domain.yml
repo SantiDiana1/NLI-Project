@@ -16,7 +16,6 @@ intents:
 entities:
   - degree_name
   - person_name
-  - person_surname
   - department
 
 slots:
@@ -33,13 +32,6 @@ slots:
     mappings:
       - type: from_entity
         entity: person_name
-
-  person_surname:
-    type: text
-    influence_conversation: false
-    mappings:
-      - type: from_entity
-        entity: person_surname
 
 responses:
   utter_greet:
@@ -66,6 +58,7 @@ actions:
   - action_give_degree_desc
   - action_give_person_location
   - action_list_dpt_people
+  - action_clear_slots
 
 session_config:
   session_expiration_time: 60

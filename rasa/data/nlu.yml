@@ -100,12 +100,17 @@ nlu:
     examples: |
       - What is the master in [sound and music computing](degree_name) about?
       - Give me information about the bachelor in [computer engineering](degree_name)
-
+      - What is [Intelligent Interactive Systems](degree_name) about?
+      - Describe me [Brain and Cognition](degree_name)
+      - Can I have the information on the [Mathematical Engineering in Data Science](degree_name) course?
+      - Give me information about the master in [Cognitive Systems and Interactive Media](degree_name)
+      - Give me information about the bachelor in [Biomedical Engineering](degree_name)
   - intent: give_person_location
     examples: |
-      - Where is [Frederic](person_name) [Font](person_surname) located?
-      - Where can I find [Jorge](person_name) [Lobo](person_surname)?
-
+      - Where is [Frederic Font](person_name) located?
+      - Where can I find [Jorge Lobo](person_name)?
+      - Where is [Jordina Torrents Barrena](person_name) at?
+      - Show me [Xavier Serra]'s room'
   - intent: list_dpt_people
     examples: |
       - Who is in the [MTG](department)?
