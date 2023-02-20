@@ -151,8 +151,108 @@ nlu:
       - Who is in the [Wireless Networking Group](department)?
       - Who is in the [WSSC](department) department?
       - Who is in the [Web Science and Social Computing](department) department?
-      -
 
+  - intent: give_degree_desc
+    examples: |
+      - What is the master in [SMC](degree_name) about?
+      - What is the master in [Music Computing](degree_name) about?
+      - What is the master in [Sound Computing](degree_name) about?
+      - What is the master in [sound and music computing](degree_name) about?
+      - Give me information about the bachelor in [computer engineering](degree_name)
+      - Give me details about the bachelor in [biomedical engineering](degree_name)
+      - Give me details about the bachelor in [telecommunications](degree_name)
+      - Give me details about the bachelor in [Telecommunications Network Engineering](degree_name)
+      - Give me details about the bachelor in [Network Engineering](degree_name)
+      - Give me details about the bachelor in [Audiovisual Systems Engineering](degree_name)
+      - Give me details about the bachelor in [Audio Engineering](degree_name)
+      - Give me details about the bachelor in [Mathematical Engineering in Data Science](degree_name)
+      - Give me details about the bachelor in [Mathematics](degree_name)
+      - Give me details about the bachelor in [Data Science](degree_name)
+      - Give me info about the master in [Cognitive Systems and Interactive Media](degree_name)
+      - Give me info about the master in [Cognitive Systems](degree_name)
+      - Give me info about the master in [Interactive Systems](degree_name)
+      - Give me info about the master in [Intelligent Interactive Systems](degree_name)
+      - Give me details about the master in [Brain and Cognition](degree_name)
+      - Give me details about the master in [Cognition](degree_name)
+      - Give me details about the master in [Computational Biomedical Engineering](degree_name)
+      - Give me details about the master in [Computer Vision](degree_name)
+      - Give me details about the master in [Digital Humanities and Heritage](degree_name)
+      - Give me details about the master in [Digital Humanities](degree_name)
+      - Give me details about the master in [Artificial Intelligence](degree_name)
+      - Give me details about the master in [AI](degree_name)
+      - Give me details about the master in [Videogames: Design, Creation and Programming](degree_name)
+      - Give me details about the master in [Videogames](degree_name)
+      - Give me details about the master in [Video games](degree_name)
+      - Give me details about the master in [Innovation, Strategy and Entrepreuneurship](degree_name)
+      - Give me details about the master in [Innovation](degree_name)
+      - Give me details about the master in [Strategy](degree_name)
+      - Give me details about the master in [Entrepreuneurship](degree_name)
+      - Give me details about the PhD in [Information and Communication Technologies](degree_name)
+      - Give me details about the PhD in [ICT](degree_name)
+      - Give me details about the PhD in [IT](degree_name)
+      - Give me details about the PhD in [Communication](degree_name)
+
+  #### Degrees synonyms
+
+  - synonym: Sound and Music Computing
+    examples: |
+      - SMC
+      - Music Computing
+      - Sound Computing
+
+  - synonym: Telecommunications Network Engineering
+    examples: |
+      - Telecommunications
+      - Network engineering
+
+  - synonym: Audiovisual Systems Engineering
+    examples: |
+      - Audio engineering
+
+  - synonym: Mathematical Engineering in Data Science
+    examples: |
+      - Data Science
+      - Mathematics
+
+  - synonym: Cognitive Systems and Interactive Media
+    examples: |
+      - Cognitive Systems
+      - Interactive Media
+
+  - synonym: Intelligent Interactive Systems
+    examples: |
+      - Interactive Systems
+
+  - synonym: Brain and Cognition
+    examples: |
+      - Cognition
+
+  - synonym: Digital Humanities and Heritage
+    examples: |
+      - Digital Humanities
+
+  - synonym: Artificial Intelligence
+    examples: |
+      - AI
+
+  - synonym: Videogames Design Creation and Programming
+    examples: |
+      - Videogames
+      - Video games
+
+  - synonym: Innovation Strategy and Entrepreuneurship
+    examples: |
+      - Innovation
+      - Strategy
+      - Entrepreuneurship
+
+  - synonym: Information and Communication Technologies
+    examples: |
+      - ICT
+      - IT
+      - Communication
+
+  ### Research groups synonyms
   - synonym: MTG
     examples: |
       - Music and Technology Group
