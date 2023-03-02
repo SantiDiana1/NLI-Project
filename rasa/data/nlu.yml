@@ -110,7 +110,7 @@ nlu:
       - Where is [Frederic Font](person_name) located?
       - Where can I find [Jorge Lobo](person_name)?
       - Where is [Jordina Torrents Barrena](person_name) at?
-      - Show me [Xavier Serra]'s room'
+      - Show me [Xavier Serra]'s room
   - intent: list_dpt_people
     examples: |
       - Who is in the [MTG](department)?
