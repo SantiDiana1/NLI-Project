@@ -11,7 +11,7 @@ pipeline:
   - name: "SpacyTokenizer"
   - name: "SpacyEntityExtractor"
     entity_types:
-      - PERSON
+      - person_name
   - name: "CountVectorsFeaturizer"
   - name: "DIETClassifier"
   - name: "EntitySynonymMapper"

@@ -136,6 +136,12 @@ class ActionListDptPeople(Action):
 
     def run(self, dispatcher, tracker, domain):
         department = next(tracker.get_latest_entity_values("department"), None)
+
+        #if department none, print error message
+        if department is None:
+            dispatcher.utter_message(
+                "I'm sorry, I didn't find anyone named like that.")
+            return []
         with open('./data/people.csv') as file:
             reader = csv.DictReader(file)
 
@@ -143,7 +149,7 @@ class ActionListDptPeople(Action):
             for row in reader:
                 if row['DEPARTMENT'].lower().strip() == department.lower().strip():
                     dpt_people.append(row['NAME'].lower().strip().title(
-                    ) + ' ' + row['SURNAME'].lower().strip().title())
+                    ) )
 
             if dpt_people:  # there is at least one value
                 # build your reply according to the output
