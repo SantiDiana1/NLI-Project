@@ -57,16 +57,16 @@ class ActionGiveDegreeDesc(Action):
             name = None
             highest_score = 0
 
-            print(degree_name) #debug
+            print(degree_name)  # debug
             score = fuzz.token_set_ratio(degree_name, name)
             for row in reader:
                 name = row['name'].lower()
                 score = fuzz.token_set_ratio(degree_name, name)
-                
+
                 if score > highest_score:
                     highest_score = score
                     degree_info = row
- 
+
         if degree_info:
             # build your reply according to the output
             reply = f"Here is the description for the " + \
@@ -94,9 +94,12 @@ class ActionGivePersonLocation(Action):
 
         # Get the person_name from the tracker
 
-        person_name=next(tracker.get_latest_entity_values('person_name'), None)
+        person_name = next(
+            tracker.get_latest_entity_values('person_name'), None)
+        print(person_name)
         if person_name is None:
-            dispatcher.utter_message("I'm sorry, I didn't find anyone named like that.")
+            dispatcher.utter_message(
+                "I'm sorry, I didn't find anyone named like that.")
             return []
         person_name = person_name.lower()
         # Load the CSV file
@@ -108,17 +111,17 @@ class ActionGivePersonLocation(Action):
             # Find the closest match to the person_name in the CSV file
             closest_match = None
             highest_score = 0
-            room=None
-            building=None
+            room = None
+            building = None
             for row in rows:
                 name = row[4].lower()
                 score = fuzz.token_set_ratio(person_name, name)
-                
+
                 if score > highest_score:
                     highest_score = score
                     closest_match = name
-                    room= row[2]
-                    building=row[3]
+                    room = row[2]
+                    building = row[3]
 
         # Return the closest match as a response
         response = f"{closest_match.title()} is located in {room} at {building}."
@@ -132,50 +135,29 @@ class ActionListDptPeople(Action):
         return "action_list_dpt_people"
 
     def run(self, dispatcher, tracker, domain):
-         
-        department=next(tracker.get_latest_entity_values('department'), None)
-        if department is None:
-            dispatcher.utter_message("I'm sorry, I didn't understand that.")
-            return []
-        department = department.lower()
-        closest_match = None
-        highest_score = 0
+        department = next(tracker.get_latest_entity_values("department"), None)
         with open('./data/people.csv') as file:
             reader = csv.DictReader(file)
-            #first row skipped
-            next(reader)
+
             dpt_people = []
             for row in reader:
-                #Get closest fit
-                            
-                department_name=row['DEPARTMENT_FULL'].lower()
-                department_abrv=row['DEPARTMENT'].lower()
-                score = fuzz.token_set_ratio(department, department_name)
-                score_abrv = fuzz.token_set_ratio(department, department_abrv)
+                if row['DEPARTMENT'].lower().strip() == department.lower().strip():
+                    dpt_people.append(row['NAME'].lower().strip().title(
+                    ) + ' ' + row['SURNAME'].lower().strip().title())
 
-                if score > highest_score:
-                    highest_score = score
-                    closest_match = department_name
-                if score_abrv > highest_score:
-                    highest_score = score_abrv
-                    closest_match = department_abrv
-
-            for row in reader:
-                if row['department'] == closest_match:
-                    dpt_people.append(row['name'])
-            
             if dpt_people:  # there is at least one value
                 # build your reply according to the output
-                reply = f"Here is the list of people in the {closest_match} department:"
+                reply = f"Here is the list of people in the " + \
+                    department.title() + \
+                    " department:"
                 reply += "\n- " + \
-                    "\n- ".join([item for item in dpt_people])
+                    "\n- ".join([person for person in dpt_people])
                 # utter the message
                 dispatcher.utter_message(reply)
-                
-            else:  # the list is empty
-                message="The department does not exist or we could't find anyone :/"
-                dispatcher.utter_message(message)
 
+            else:  # the list is empty
+                dispatcher.utter_message(
+                    f"The department does not exist or we could't find anyone :/")
 
 
 class ActionClearSlots(Action):
@@ -187,7 +169,3 @@ class ActionClearSlots(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         return [AllSlotsReset()]
-
-
-
- 
