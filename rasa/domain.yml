@@ -12,6 +12,7 @@ intents:
   - give_degree_desc
   - give_department_desc
   - give_person_location
+  - give_person_department
   - list_dpt_people
 
 entities:
@@ -60,6 +61,7 @@ actions:
   - action_give_degree_desc
   - action_give_department_desc
   - action_give_person_location
+  - action_give_person_department
   - action_list_dpt_people
   - action_clear_slots
 

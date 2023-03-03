@@ -106,6 +106,12 @@ nlu:
       - In what room is [Marius Miron](person_name)
       - Show me [Xavier Serra](person_name)'s room
 
+  - intent: give_person_department
+    examples: |
+      - In which department is [Frederic Font](person_name) part of?
+      - What department is [Dmitry Bogdanov](person_name) in?
+      - What's the department of [Anders Jonsson](person_name)?
+
   - intent: list_dpt_people
     examples: |
       - Who is in the [MTG](department)?

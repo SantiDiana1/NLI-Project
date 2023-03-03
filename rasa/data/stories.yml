@@ -44,12 +44,20 @@ stories:
       - action: action_give_degree_desc
       - action: action_clear_slots
 
-  - story: find person room
+  - story: find person location
     steps:
       - intent: greet
       - action: utter_greet
       - intent: give_person_location
       - action: action_give_person_location
+      - action: action_clear_slots
+
+  - story: find person department
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: give_person_department
+      - action: action_give_person_department
       - action: action_clear_slots
 
   - story: list people in department

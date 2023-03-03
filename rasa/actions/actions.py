@@ -208,6 +208,48 @@ class ActionGiveDepartmentDesc(Action):
                 f"I could not find what you requested :/")
 
 
+class ActionGivePersonDepartment(Action):
+    def name(self) -> Text:
+        return "action_give_person_department"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        # Get the person_name from the tracker
+
+        person_name = next(
+            tracker.get_latest_entity_values('person_name'), None)
+        print(person_name)
+        if person_name is None:
+            dispatcher.utter_message(
+                "I'm sorry, I didn't find anyone named like that.")
+            return []
+        person_name = person_name.lower()
+        # Load the CSV file
+        file_path = './data/people.csv'
+        with open(file_path, 'r') as f:
+            reader = csv.reader(f)
+            rows = [row for row in reader]
+
+            # Find the closest match to the person_name in the CSV file
+            closest_match = None
+            highest_score = 0
+            department = None
+            for row in rows:
+                name = row[4].lower()
+                score = fuzz.token_set_ratio(person_name, name)
+
+                if score > highest_score:
+                    highest_score = score
+                    closest_match = name
+                    department = row[1]
+
+        # Return the closest match as a response
+        response = f"{closest_match.title()} is part of the {department}"
+        dispatcher.utter_message(text=response)
+
+        return []
+
+
 class ActionClearSlots(Action):
     def name(self) -> Text:
         return "action_clear_slots"
