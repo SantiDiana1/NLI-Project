@@ -95,16 +95,8 @@ nlu:
       - what is the list of dtic degrees?
       - what are the different dtic degrees available?
       - Give me the list of DTIC degrees at UPF
+      - What degrees are offered at UPF?
 
-  - intent: give_degree_desc
-    examples: |
-      - What is the master in [sound and music computing](degree_name) about?
-      - Give me information about the bachelor in [computer engineering](degree_name)
-      - What is [Intelligent Interactive Systems](degree_name) about?
-      - Describe me [Brain and Cognition](degree_name)
-      - Can I have the information on the [Mathematical Engineering in Data Science](degree_name) course?
-      - Give me information about the master in [Cognitive Systems and Interactive Media](degree_name)
-      - Give me information about the bachelor in [Biomedical Engineering](degree_name)
   - intent: give_person_location
     examples: |
       - Where is [Frederic Font](person_name) located?
@@ -113,6 +105,7 @@ nlu:
       - Give me the room of [Alastair Porter](person_name)
       - In what room is [Marius Miron](person_name)
       - Show me [Xavier Serra](person_name)'s room
+
   - intent: list_dpt_people
     examples: |
       - Who is in the [MTG](department)?
@@ -156,6 +149,13 @@ nlu:
 
   - intent: give_degree_desc
     examples: |
+      - What is the master in [sound and music computing](degree_name) about?
+      - Give me information about the bachelor in [computer engineering](degree_name)
+      - What is [Intelligent Interactive Systems](degree_name) about?
+      - Describe me [Brain and Cognition](degree_name)
+      - Can I have the information on the [Mathematical Engineering in Data Science](degree_name) course?
+      - Give me information about the master in [Cognitive Systems and Interactive Media](degree_name)
+      - Give me information about the bachelor in [Biomedical Engineering](degree_name)
       - What is the master in [SMC](degree_name) about?
       - What is the master in [Music Computing](degree_name) about?
       - What is the master in [Sound Computing](degree_name) about?
@@ -193,6 +193,12 @@ nlu:
       - Give me details about the PhD in [ICT](degree_name)
       - Give me details about the PhD in [IT](degree_name)
       - Give me details about the PhD in [Communication](degree_name)
+
+  - intent: give_department_desc
+    examples: |
+      - What does the [MTG](department) do?
+      - What kind of research does the [UBICALAB](department) do?
+      - Give me information about the [IP4EC](department)
 
   #### Degrees synonyms
 

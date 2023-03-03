@@ -137,7 +137,7 @@ class ActionListDptPeople(Action):
     def run(self, dispatcher, tracker, domain):
         department = next(tracker.get_latest_entity_values("department"), None)
 
-        #if department none, print error message
+        # if department none, print error message
         if department is None:
             dispatcher.utter_message(
                 "I'm sorry, I didn't find anyone named like that.")
@@ -148,8 +148,7 @@ class ActionListDptPeople(Action):
             dpt_people = []
             for row in reader:
                 if row['DEPARTMENT'].lower().strip() == department.lower().strip():
-                    dpt_people.append(row['NAME'].lower().strip().title(
-                    ) )
+                    dpt_people.append(row['NAME'].lower().strip().title())
 
             if dpt_people:  # there is at least one value
                 # build your reply according to the output
@@ -164,6 +163,49 @@ class ActionListDptPeople(Action):
             else:  # the list is empty
                 dispatcher.utter_message(
                     f"The department does not exist or we could't find anyone :/")
+
+
+class ActionGiveDepartmentDesc(Action):
+    def name(self) -> Text:
+        return "action_give_department_desc"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        department_name = next(
+            tracker.get_latest_entity_values("department"), None)
+        print(department_name)
+
+        with open('./data/departments.csv') as file:
+            reader = csv.DictReader(file)
+            department_info = None
+            name = None
+            highest_score = 0
+
+            print(department_info)  # debug
+            score = fuzz.token_set_ratio(department_name, name)
+            for row in reader:
+                name = row['DEPARTMENT'].lower()
+                score = fuzz.token_set_ratio(department_name, name)
+
+                if score > highest_score:
+                    highest_score = score
+                    department_info = row
+
+        if department_info:
+            # build your reply according to the output
+            reply = f"Here is the description for the " + \
+                department_info['DEPARTMENT'] + ":"
+
+            reply += "\n" + department_info['DESCRIPTION']
+
+            # utter the message
+            dispatcher.utter_message(reply)
+
+        else:  # the list is empty
+            dispatcher.utter_message(
+                f"I could not find what you requested :/")
 
 
 class ActionClearSlots(Action):

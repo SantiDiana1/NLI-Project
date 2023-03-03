@@ -10,6 +10,7 @@ intents:
   - bot_challenge
   - list_dtic_degrees
   - give_degree_desc
+  - give_department_desc
   - give_person_location
   - list_dpt_people
 
@@ -57,6 +58,7 @@ responses:
 actions:
   - action_list_dtic_degrees
   - action_give_degree_desc
+  - action_give_department_desc
   - action_give_person_location
   - action_list_dpt_people
   - action_clear_slots
