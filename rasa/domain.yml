@@ -16,6 +16,7 @@ intents:
 entities:
   - degree_name
   - person_name
+  - PERSON
   - department
 
 slots:
