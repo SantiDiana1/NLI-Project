@@ -47,7 +47,9 @@ class ActionGiveDegreeDesc(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
+        
+        pregunta = tracker.latest_message.get('text')
+        
         degree_name = next(
             tracker.get_latest_entity_values("degree_name"), None)
         print(degree_name)
@@ -82,7 +84,7 @@ class ActionGiveDegreeDesc(Action):
             # utter the message
             dispatcher.utter_message(reply)
 
-        else:  # the list is empty
+        else:  # the list is empt
             dispatcher.utter_message(
                 f"I could not find what you requested :/")
 
@@ -123,12 +125,14 @@ class ActionGivePersonLocation(Action):
                     closest_match = name
                     room = row[2]
                     building = row[3]
-
+            room_dot=room
+            room=str(room)
+            digit=room[2]
         # Return the closest match as a response
-        response = f"{closest_match.title()} is located in {room} at {building}."
+        response = f"{closest_match.title()} is located in {room_dot} at {building} at {digit} floor."
         language="en"
         response_copy=response
-        tts(response_copy,language)
+        #tts(response_copy,language)
         dispatcher.utter_message(text=response)
 
         return []
