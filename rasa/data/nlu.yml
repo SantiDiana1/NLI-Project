@@ -105,7 +105,7 @@ nlu:
       - Give me the room of [Alastair Porter](person_name)
       - In what room is [Marius Miron](person_name)
       - Show me [Xavier Serra](person_name)'s room
-
+      - In which building is located [Xavier Serra](person_name)
   - intent: give_person_department
     examples: |
       - In which department is [Frederic Font](person_name) part of?

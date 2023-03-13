@@ -13,6 +13,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from fuzzywuzzy import fuzz
 
+import pyttsx3
 
 class ActionListDticDegrees(Action):
     def name(self) -> Text:
@@ -125,6 +126,9 @@ class ActionGivePersonLocation(Action):
 
         # Return the closest match as a response
         response = f"{closest_match.title()} is located in {room} at {building}."
+        language="en"
+        response_copy=response
+        tts(response_copy,language)
         dispatcher.utter_message(text=response)
 
         return []
@@ -259,3 +263,26 @@ class ActionClearSlots(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         return [AllSlotsReset()]
+
+
+def tts(text,language):
+    engine = pyttsx3.init()
+    voices = engine.getProperty('voices')
+    for voice in voices:
+        print(voice.id)
+        if "spanish" in voice.id:
+            esp_id=voice.id
+        if "english" in voice.id:
+            eng_id=voice.id
+
+    if language== "en":
+        engine.setProperty("voice",eng_id)
+    elif language == "esp":
+        engine.setProperty("voice",esp_id)
+
+    engine.say(text)
+    engine.runAndWait()
+
+
+
+    
