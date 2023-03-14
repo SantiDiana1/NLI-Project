@@ -12,6 +12,7 @@ from rasa_sdk.events import AllSlotsReset
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from fuzzywuzzy import fuzz
+from rasa_sdk.events import SlotSet
 
 import pyttsx3
 
@@ -125,17 +126,15 @@ class ActionGivePersonLocation(Action):
                     closest_match = name
                     room = row[2]
                     building = row[3]
-            room_dot=room
-            room=str(room)
-            digit=room[2]
+        
         # Return the closest match as a response
-        response = f"{closest_match.title()} is located in {room_dot} at {building} at floor {digit}."
+        response = f"{closest_match.title()} is located in {room} at {building}."
         language="en"
         response_copy=response
         #tts(response_copy,language)
         dispatcher.utter_message(text=response)
 
-        return []
+        return [SlotSet("room",room)]
 
 
 class ActionListDptPeople(Action):
@@ -267,6 +266,23 @@ class ActionClearSlots(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         return [AllSlotsReset()]
+
+
+class ActionGiveFloor(Action):
+    def name(self) -> Text:
+        return "action_give_floor"
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        print('He entrado')
+        my_slot_value = tracker.get_slot("room")
+        my_slot_value=str(my_slot_value)
+        digit=my_slot_value[2]
+
+        # Do something with the slot value
+        dispatcher.utter_message(f"You have to go to the floor number {digit}")
+        return []
+    
 
 
 def tts(text,language):

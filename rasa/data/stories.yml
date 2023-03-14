@@ -43,15 +43,7 @@ stories:
       - intent: give_degree_desc
       - action: action_give_degree_desc
       - action: action_clear_slots
-
-  - story: find person location
-    steps:
-      - intent: greet
-      - action: utter_greet
-      - intent: give_person_location
-      - action: action_give_person_location
-      - action: action_clear_slots
-
+   
   - story: find person department
     steps:
       - intent: greet
@@ -75,3 +67,16 @@ stories:
       - intent: give_department_desc
       - action: action_give_department_desc
       - action: action_clear_slots
+
+  - story: ask_room
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: give_person_location
+    - action: action_give_person_location
+    
+      
+  - story: ask_floor
+    steps: 
+    - intent: give_floor
+    - action: action_give_floor

@@ -208,7 +208,14 @@ nlu:
       - What kind of research does the [UBICALAB](department) do?
       - Give me information about the [IP4EC](department)
 
-  #### Degrees synonyms
+  - intent: give_floor
+    examples: |
+      - In which floor?
+      - In which floor is [Xavier Serra](person_name) located?
+      - In which floor
+      
+
+  #### Degrees synonyms 
 
   - synonym: Sound and Music Computing
     examples: |
