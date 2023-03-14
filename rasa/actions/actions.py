@@ -98,8 +98,12 @@ class ActionGivePersonLocation(Action):
 
         # Get the person_name from the tracker
 
-        person_name = next(
-            tracker.get_latest_entity_values('person_name'), None)
+        person = tracker.get_slot("person_name")
+        if person is not None:
+            person_name=person
+        else: 
+            person_name = next(
+                tracker.get_latest_entity_values('person_name'), None)
         print(person_name)
         if person_name is None:
             dispatcher.utter_message(
@@ -134,7 +138,7 @@ class ActionGivePersonLocation(Action):
         #tts(response_copy,language)
         dispatcher.utter_message(text=response)
 
-        return [SlotSet("room",room)]
+        return [SlotSet("person_name",person_name)]
 
 
 class ActionListDptPeople(Action):
@@ -222,9 +226,14 @@ class ActionGivePersonDepartment(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         # Get the person_name from the tracker
-
-        person_name = next(
-            tracker.get_latest_entity_values('person_name'), None)
+        
+        person = tracker.get_slot("person_name")
+        if person is not None:
+            person_name=person
+        else: 
+            person_name = next(
+                tracker.get_latest_entity_values('person_name'), None)
+        
         print(person_name)
         if person_name is None:
             dispatcher.utter_message(
@@ -250,11 +259,12 @@ class ActionGivePersonDepartment(Action):
                     closest_match = name
                     department = row[1]
 
+        
         # Return the closest match as a response
         response = f"{closest_match.title()} is part of the {department}"
         dispatcher.utter_message(text=response)
 
-        return []
+        return [SlotSet("person_name",person_name)]
 
 
 class ActionClearSlots(Action):
@@ -275,14 +285,46 @@ class ActionGiveFloor(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('He entrado')
-        my_slot_value = tracker.get_slot("room")
-        my_slot_value=str(my_slot_value)
-        digit=my_slot_value[2]
+
+        person = tracker.get_slot("person_name")
+        if person is not None:
+            person_name=person
+        else: 
+            person_name = next(
+                tracker.get_latest_entity_values('person_name'), None)
+
+        if person_name is None:
+            dispatcher.utter_message(f"You have to specify the name of the person. Otherwise I don't know in which floor is he/she is located")
+            return []    
+
+        person_name = person_name.lower()
+        # Load the CSV file
+        file_path = './data/people.csv'
+        with open(file_path, 'r') as f:
+            reader = csv.reader(f)
+            rows = [row for row in reader]
+
+            # Find the closest match to the person_name in the CSV file
+            closest_match = None
+            highest_score = 0
+            room = None
+            building = None
+            for row in rows:
+                name = row[4].lower()
+                score = fuzz.token_set_ratio(person_name, name)
+
+                if score > highest_score:
+                    highest_score = score
+                    closest_match = name
+                    room = row[2]
+                    building = row[3]
+
+        room=str(room)
+        digit=room[2]
 
         # Do something with the slot value
         dispatcher.utter_message(f"You have to go to the floor number {digit}")
-        return []
-    
+        return []    
 
 
 def tts(text,language):
