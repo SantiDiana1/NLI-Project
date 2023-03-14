@@ -30,7 +30,6 @@ class Socket extends Component {
             self.setState({ loading: false, result: "Sorry I'm too tired to respond, check back later 😴" })
         });
 
-        this.triggerNext = this.triggerNext.bind(this);
     }
 
     componentWillMount() {
@@ -46,6 +45,14 @@ class Socket extends Component {
                 self.setState({ loading: false, result: response.text })
             }
         });
+    }
+
+    componentDidUpdate() {
+        if (!this.state.trigger) {
+            this.setState({ trigger: true }, () => {
+                this.props.triggerNextStep();
+            })
+        }
     }
 
     getSessionId = () => {
@@ -67,17 +74,11 @@ class Socket extends Component {
         });
     }
 
-    triggerNext() {
-        this.setState({ trigger: true }, () => {
-            this.props.triggerNextStep();
-        });
-    }
-
     render() {
         const { trigger, loading, result } = this.state;
 
         return (
-            <div className="dbpedia">
+            <div className="dbpedia" >
                 {loading ? <Loading /> : result}
                 {
                     !loading &&
@@ -87,14 +88,6 @@ class Socket extends Component {
                             marginTop: 20,
                         }}
                     >
-                        {
-                            !trigger &&
-                            <button
-                                onClick={() => this.triggerNext()}
-                            >
-                                Search Again
-                            </button>
-                        }
                     </div>
                 }
             </div>
