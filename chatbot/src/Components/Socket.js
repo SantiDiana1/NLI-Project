@@ -40,8 +40,6 @@ class Socket extends Component {
 
         this.utter(search)
 
-        console.log('wtf')
-
         self.socket.on('bot_uttered', function (response) {
             console.log('Bot uttered:', response);
             if (response.text) {
