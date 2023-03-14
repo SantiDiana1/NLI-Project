@@ -1,6 +1,5 @@
 import { useWhisper } from '@chengsokdara/use-whisper'
 
-
 const Whisper = () => {
     const {
         recording,

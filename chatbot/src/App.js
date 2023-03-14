@@ -6,6 +6,7 @@ function App() {
   return (
     <ChatBot
       headerTitle="Come talk to me please 🥺"
+      recognitionEnable={true}
       steps={[
         {
           id: '1',
@@ -22,8 +23,8 @@ function App() {
           component: <Socket />,
           asMessage: true,
           waitAction: true,
-          trigger: '1',
-        }
+          trigger: 'search',
+        },
       ]}
     />
   );
