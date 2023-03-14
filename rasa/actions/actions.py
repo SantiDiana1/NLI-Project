@@ -129,7 +129,7 @@ class ActionGivePersonLocation(Action):
             room=str(room)
             digit=room[2]
         # Return the closest match as a response
-        response = f"{closest_match.title()} is located in {room_dot} at {building} at {digit} floor."
+        response = f"{closest_match.title()} is located in {room_dot} at {building} at floor {digit}."
         language="en"
         response_copy=response
         #tts(response_copy,language)

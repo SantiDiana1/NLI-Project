@@ -106,12 +106,14 @@ nlu:
       - In what room is [Marius Miron](person_name)
       - Show me [Xavier Serra](person_name)'s room
       - In which building is located [Xavier Serra](person_name)
+      - Where is [Xavier Serra](person_name)
   - intent: give_person_department
     examples: |
       - In which department is [Frederic Font](person_name) part of?
       - What department is [Dmitry Bogdanov](person_name) in?
       - What's the department of [Anders Jonsson](person_name)?
-
+      - What is the department of [Xavier Serra](person_name)
+      - Which department does [Xavier Serra](person_name) belong to?
   - intent: list_dpt_people
     examples: |
       - Who is in the [MTG](department)?
