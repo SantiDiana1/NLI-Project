@@ -87,7 +87,7 @@ class Socket extends Component {
         const { trigger, loading, result } = this.state;
 
         return (
-            <div className="dbpedia" >
+            <div className="socket" >
                 {loading ? <Loading /> : result}
                 {
                     !loading &&

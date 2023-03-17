@@ -32,14 +32,19 @@ function ChatBotWrapper() {
 
   return (
     <div>
-      <button onClick={toggleTTS}>
+      <label>
+        <input
+          type="checkbox"
+          checked={enableTTS}
+          onChange={toggleTTS}
+        />
         Toggle Text-to-Speech
-      </button>
+      </label>
       <ChatBot
         key={enableTTS}
         recognitionEnable={true}
         steps={steps} />
-    </div>
+    </div >
   );
 }
 
