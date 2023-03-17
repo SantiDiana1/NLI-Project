@@ -16,6 +16,7 @@ from rasa_sdk.events import SlotSet
 
 import pyttsx3
 
+
 class ActionListDticDegrees(Action):
     def name(self) -> Text:
         return "action_list_dtic_degrees"
@@ -48,9 +49,9 @@ class ActionGiveDegreeDesc(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
+
         pregunta = tracker.latest_message.get('text')
-        
+
         degree_name = next(
             tracker.get_latest_entity_values("degree_name"), None)
         print(degree_name)
@@ -100,8 +101,8 @@ class ActionGivePersonLocation(Action):
 
         person = tracker.get_slot("person_name")
         if person is not None:
-            person_name=person
-        else: 
+            person_name = person
+        else:
             person_name = next(
                 tracker.get_latest_entity_values('person_name'), None)
         print(person_name)
@@ -130,15 +131,15 @@ class ActionGivePersonLocation(Action):
                     closest_match = name
                     room = row[2]
                     building = row[3]
-        
+
         # Return the closest match as a response
         response = f"{closest_match.title()} is located in {room} at {building}."
-        language="en"
-        response_copy=response
-        #tts(response_copy,language)
+        language = "en"
+        response_copy = response
+        # tts(response_copy,language)
         dispatcher.utter_message(text=response)
 
-        return [SlotSet("person_name",person_name)]
+        return [SlotSet("person_name", person_name)]
 
 
 class ActionListDptPeople(Action):
@@ -226,14 +227,14 @@ class ActionGivePersonDepartment(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         # Get the person_name from the tracker
-        
+
         person = tracker.get_slot("person_name")
         if person is not None:
-            person_name=person
-        else: 
+            person_name = person
+        else:
             person_name = next(
                 tracker.get_latest_entity_values('person_name'), None)
-        
+
         print(person_name)
         if person_name is None:
             dispatcher.utter_message(
@@ -259,12 +260,11 @@ class ActionGivePersonDepartment(Action):
                     closest_match = name
                     department = row[1]
 
-        
         # Return the closest match as a response
         response = f"{closest_match.title()} is part of the {department}"
         dispatcher.utter_message(text=response)
 
-        return [SlotSet("person_name",person_name)]
+        return [SlotSet("person_name", person_name)]
 
 
 class ActionClearSlots(Action):
@@ -281,6 +281,7 @@ class ActionClearSlots(Action):
 class ActionGiveFloor(Action):
     def name(self) -> Text:
         return "action_give_floor"
+
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
@@ -288,14 +289,15 @@ class ActionGiveFloor(Action):
 
         person = tracker.get_slot("person_name")
         if person is not None:
-            person_name=person
-        else: 
+            person_name = person
+        else:
             person_name = next(
                 tracker.get_latest_entity_values('person_name'), None)
 
         if person_name is None:
-            dispatcher.utter_message(f"You have to specify the name of the person. Otherwise I don't know in which floor is he/she is located")
-            return []    
+            dispatcher.utter_message(
+                f"You have to specify the name of the person. Otherwise I don't know in which floor he/she is located")
+            return []
 
         person_name = person_name.lower()
         # Load the CSV file
@@ -319,32 +321,28 @@ class ActionGiveFloor(Action):
                     room = row[2]
                     building = row[3]
 
-        room=str(room)
-        digit=room[2]
+        room = str(room)
+        digit = room[2]
 
         # Do something with the slot value
         dispatcher.utter_message(f"You have to go to the floor number {digit}")
-        return []    
+        return []
 
 
-def tts(text,language):
+def tts(text, language):
     engine = pyttsx3.init()
     voices = engine.getProperty('voices')
     for voice in voices:
         print(voice.id)
         if "spanish" in voice.id:
-            esp_id=voice.id
+            esp_id = voice.id
         if "english" in voice.id:
-            eng_id=voice.id
+            eng_id = voice.id
 
-    if language== "en":
-        engine.setProperty("voice",eng_id)
+    if language == "en":
+        engine.setProperty("voice", eng_id)
     elif language == "esp":
-        engine.setProperty("voice",esp_id)
+        engine.setProperty("voice", esp_id)
 
     engine.say(text)
     engine.runAndWait()
-
-
-
-    
