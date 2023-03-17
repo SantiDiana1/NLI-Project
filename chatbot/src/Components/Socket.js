@@ -7,6 +7,8 @@ class Socket extends Component {
     constructor(props) {
         super(props);
 
+        this.enableTTS = this.props.enableTTS
+
         this.socket = io('http://localhost:5005')
 
         this.state = {
@@ -44,8 +46,15 @@ class Socket extends Component {
             if (response.text) {
                 self.setState({ loading: false, result: response.text })
             }
+
+            if (self.enableTTS) {
+                var msg = new SpeechSynthesisUtterance()
+                msg.text = response.text
+                window.speechSynthesis.speak(msg)
+            }
         });
     }
+
 
     componentDidUpdate() {
         if (!this.state.trigger) {
