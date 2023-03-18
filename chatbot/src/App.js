@@ -22,10 +22,15 @@ function ChatBotWrapper() {
     setTTS(!enableTTS)
   }
 
+  var defaultMessage = 'Hey there, I am the best UPF chatbot ever made, what can I do for you?'
+  if (currentLanguage !== 'English') {
+    defaultMessage = 'Hola, soy el mejor chatbot de UPF jamás creado, ¿qué puedo hacer por ti?'
+  }
+
   const steps = [
     {
       id: '1',
-      message: 'Hey there, I am the best SMC chatbot ever made, what can I do for you?',
+      message: defaultMessage,
       trigger: 'search'
     },
     {
