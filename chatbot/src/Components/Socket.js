@@ -7,6 +7,8 @@ class Socket extends Component {
     constructor(props) {
         super(props);
 
+        this.language = this.props.language
+
         this.enableTTS = this.props.enableTTS
 
         this.socket = io('http://localhost:5005')
@@ -34,10 +36,30 @@ class Socket extends Component {
 
     }
 
-    componentWillMount() {
+    translateText = async (text, sourceLang, targetLang) => {
+        const res = await fetch("https://libretranslate.com/translate", {
+            method: "POST",
+            body: JSON.stringify({
+                q: text,
+                source: sourceLang,
+                target: targetLang
+            }),
+            headers: { "Content-Type": "application/json" }
+        });
+
+        console.log(await res.json());
+    }
+
+    componentDidMount() {
         const { steps } = this.props;
-        const search = steps.search.value;
+        var search = steps.search.value;
         const self = this
+
+        if (this.language !== 'English') {
+            search = this.translateText(search, 'es', 'en')
+            console.log(search)
+            console.log('HELLO THERE')
+        }
 
         this.utter(search)
 

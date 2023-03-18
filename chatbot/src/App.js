@@ -1,10 +1,22 @@
 import './App.css';
 import ChatBot from 'react-simple-chatbot';
 import Socket from './Components/Socket';
-import React, { useState } from 'react';
+import LanguageSwitcher from './Components/LanguageSwitcher';
+import React, { useState, useEffect } from 'react';
+
 
 function ChatBotWrapper() {
   const [enableTTS, setTTS] = useState(false)
+  const [currentLanguage, setCurrentLanguage] = useState('English');
+  const [toggle, setToggle] = useState(false);
+  useEffect(() => {
+    const bool = currentLanguage === "English" ? false : !!currentLanguage
+    setToggle(enableTTS !== bool);
+  }, [enableTTS, currentLanguage]);
+
+  const handleLanguageChange = (language) => {
+    setCurrentLanguage(language);
+  };
 
   function toggleTTS() {
     setTTS(!enableTTS)
@@ -23,7 +35,7 @@ function ChatBotWrapper() {
     },
     {
       id: '3',
-      component: <Socket key={enableTTS} enableTTS={enableTTS} />,
+      component: <Socket key={toggle} enableTTS={enableTTS} language={currentLanguage} />,
       asMessage: true,
       waitAction: true,
       trigger: 'search',
@@ -32,6 +44,10 @@ function ChatBotWrapper() {
 
   return (
     <div>
+      <LanguageSwitcher
+        languages={['English', 'Spanish']}
+        onChange={handleLanguageChange}
+      />
       <label>
         <input
           type="checkbox"
@@ -41,7 +57,7 @@ function ChatBotWrapper() {
         Toggle Text-to-Speech
       </label>
       <ChatBot
-        key={enableTTS}
+        key={toggle}
         recognitionEnable={true}
         steps={steps} />
     </div >
