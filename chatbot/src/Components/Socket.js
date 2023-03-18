@@ -7,6 +7,8 @@ class Socket extends Component {
     constructor(props) {
         super(props);
 
+        this.apiKey = 'trnsl.1.1.20230318T211359Z.e0a23172c73f602b.24d06256bc5dce3bfd7973c8cb3526219212d57e'
+
         this.language = this.props.language
 
         this.enableTTS = this.props.enableTTS
@@ -37,41 +39,35 @@ class Socket extends Component {
     }
 
     translateText = async (text, sourceLang, targetLang) => {
-        const res = await fetch("https://libretranslate.com/translate", {
-            method: "POST",
-            body: JSON.stringify({
-                q: text,
-                source: sourceLang,
-                target: targetLang
-            }),
-            headers: { "Content-Type": "application/json" }
-        });
-
-        console.log(await res.json());
+        const response = await fetch(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=${this.apiKey}&text=${text}&lang=${sourceLang}-${targetLang}`)
+        const data = await response.json()
+        return data.text[0]
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const { steps } = this.props;
         var search = steps.search.value;
         const self = this
 
         if (this.language !== 'English') {
-            search = this.translateText(search, 'es', 'en')
-            console.log(search)
-            console.log('HELLO THERE')
+            search = await this.translateText(search, 'es', 'en')
         }
 
         this.utter(search)
 
-        self.socket.on('bot_uttered', function (response) {
+        self.socket.on('bot_uttered', async function (response) {
             console.log('Bot uttered:', response);
-            if (response.text) {
-                self.setState({ loading: false, result: response.text })
+            var result = response.text
+            if (this.language !== 'English') {
+                result = await self.translateText(result, 'en', 'es')
+            }
+            if (result) {
+                self.setState({ loading: false, result: result })
             }
 
             if (self.enableTTS) {
                 var msg = new SpeechSynthesisUtterance()
-                msg.text = response.text
+                msg.text = result
                 window.speechSynthesis.speak(msg)
             }
         });
