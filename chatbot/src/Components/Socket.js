@@ -58,7 +58,7 @@ class Socket extends Component {
         self.socket.on('bot_uttered', async function (response) {
             console.log('Bot uttered:', response);
             var result = response.text
-            if (this.language !== 'English') {
+            if (self.language !== 'English') {
                 result = await self.translateText(result, 'en', 'es')
             }
             if (result) {
@@ -68,6 +68,9 @@ class Socket extends Component {
             if (self.enableTTS) {
                 var msg = new SpeechSynthesisUtterance()
                 msg.text = result
+                if (self.language !== 'English') {
+                    msg.lang = "es-ES"
+                }
                 window.speechSynthesis.speak(msg)
             }
         });
