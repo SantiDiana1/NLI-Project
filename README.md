@@ -8,11 +8,17 @@
 rasa train
 ```
 
-### Run the last model saved
+### Run the chatbot application
 
-Run these two commands in a separate terminal
+Run these commands in a separate terminal from the rasa folder
 
 ```
 rasa run actions
-rasa shell
+rasa run --cors "*"
+```
+
+The following runs the app in development mode. Open http://localhost:3000 to view it in the browser
+
+```
+npm start
 ```
