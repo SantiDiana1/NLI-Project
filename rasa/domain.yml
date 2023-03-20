@@ -20,6 +20,7 @@ entities:
   - person_name
   - PERSON
   - department
+  - room
 
 slots:
   degree_name:
@@ -42,7 +43,6 @@ slots:
     mappings:
       - type: from_entity
         entity: room
-
 
 responses:
   utter_greet:

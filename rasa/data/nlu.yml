@@ -217,9 +217,8 @@ nlu:
       - In which floor?
       - In which floor is [Xavier Serra](person_name) located?
       - In which floor
-      
 
-  #### Degrees synonyms 
+  #### Degrees synonyms
 
   - synonym: Sound and Music Computing
     examples: |
