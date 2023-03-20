@@ -1,0 +1,368 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - hey
+      - hello
+      - hi
+      - hello there
+      - good morning
+      - good evening
+      - moin
+      - hey there
+      - let's go
+      - hey dude
+      - goodmorning
+      - goodevening
+      - good afternoon
+
+  - intent: goodbye
+    examples: |
+      - cu
+      - good by
+      - cee you later
+      - good night
+      - bye
+      - goodbye
+      - have a nice day
+      - see you around
+      - bye bye
+      - see you later
+
+  - intent: affirm
+    examples: |
+      - yes
+      - y
+      - indeed
+      - of course
+      - that sounds good
+      - correct
+
+  - intent: deny
+    examples: |
+      - no
+      - n
+      - never
+      - I don't think so
+      - don't like that
+      - no way
+      - not really
+
+  - intent: mood_great
+    examples: |
+      - perfect
+      - great
+      - amazing
+      - feeling like a king
+      - wonderful
+      - I am feeling very good
+      - I am great
+      - I am amazing
+      - I am going to save the world
+      - super stoked
+      - extremely good
+      - so so perfect
+      - so good
+      - so perfect
+
+  - intent: mood_unhappy
+    examples: |
+      - my day was horrible
+      - I am sad
+      - I don't feel very well
+      - I am disappointed
+      - super sad
+      - I'm so sad
+      - sad
+      - very sad
+      - unhappy
+      - not good
+      - not very good
+      - extremly sad
+      - so saad
+      - so sad
+
+  - intent: bot_challenge
+    examples: |
+      - are you a bot?
+      - are you a human?
+      - am I talking to a bot?
+      - am I talking to a human?
+
+  - intent: list_dtic_degrees
+    examples: |
+      - what is the list of dtic degrees?
+      - what are the different dtic degrees available?
+      - Give me the list of DTIC degrees at UPF
+      - What degrees are offered at UPF?
+
+  - intent: give_person_location
+    examples: |
+      - Where is [Frederic Font](person_name) located?
+      - Where can I find [Jorge Lobo](person_name)?
+      - Where is [Jordina Torrents Barrena](person_name) at?
+      - Give me the room of [Alastair Porter](person_name)
+      - In what room is [Marius Miron](person_name)
+      - Show me [Xavier Serra](person_name)'s room
+      - In which building is located [Xavier Serra](person_name)
+      - Where is [Xavier Serra](person_name)
+      - Which is his room?
+      - Which is her room?
+  - intent: give_person_department
+    examples: |
+      - In which department is [Frederic Font](person_name) part of?
+      - What department is [Dmitry Bogdanov](person_name) in?
+      - What's the department of [Anders Jonsson](person_name)?
+      - What is the department of [Xavier Serra](person_name)
+      - Which department does [Xavier Serra](person_name) belong to?
+      - Which is his department?
+      - Which is her department?
+  - intent: list_dpt_people
+    examples: |
+      - Who is in the [MTG](department)?
+      - Give me the list of people in the [Music Technology Group](department)?
+      - Who is in the [Music Technology department](department)?
+      - Who is in the [BERG](department)?
+      - Who is in the [Biomedical Electronics Research Group](department)?
+      - Who is in the [AI and ML group](department)?
+      - Who is in the [CMTECH](department)?
+      - Who is in the [Cognitive Media Technologies group](department)?
+      - Who is in the [Image processing for enhanced cinematography](department) group?
+      - Who is in the [IP4EC](department)?
+      - Who is in the [Image processing group](department)?
+      - Who is in the [IPG](department)?
+      - Who is in the [Information Theory and Coding Group](department)?
+      - Who is in the [ITG](department)?
+      - Who is in the [Interactive Technologies Group](department)?
+      - Who is in the [ITC](department)?
+      - Who is in the [NLP](department) group?
+      - Who is in the [Natural Language Processing](department) department?
+      - Give me the list of people in the [NETS](department)
+      - Give me the list of people in the [Network Technologies and Strategies Group](department)
+      - Who is in the [NTSA](department)?
+      - Who is in the [Nonlinear Time Series Analysis Group](department)?
+      - Who is in the [Physense](department) department?
+      - Who is in the [Sensing in Physiology and Biomedicine Group](department)?
+      - Who is in the [Research Service](department)?
+      - Who is in the [SIMBIOsys](department)?
+      - Who is in the [Simulation Imaging and Modelling for Biomedical Systems](department) department?
+      - Who is in the [TALN](department) department?
+      - Who is in the [TIDE](department) department?
+      - Who is in the [Interactive & Distributed Technologies for Education](department) department?
+      - Who is in the [UBICALAB](department)?
+      - Who is in thee [Ubiquitous Computing Applications Lab](department)?
+      - Who is in the [UGA TIC](department)?
+      - Who is in the [Polytecnic School](department)?
+      - Who is in the [WN](department) group?
+      - Who is in the [Wireless Networking Group](department)?
+      - Who is in the [WSSC](department) department?
+      - Who is in the [Web Science and Social Computing](department) department?
+
+  - intent: give_degree_desc
+    examples: |
+      - What is the master in [sound and music computing](degree_name) about?
+      - Give me information about the bachelor in [computer engineering](degree_name)
+      - What is [Intelligent Interactive Systems](degree_name) about?
+      - Describe me [Brain and Cognition](degree_name)
+      - Can I have the information on the [Mathematical Engineering in Data Science](degree_name) course?
+      - Give me information about the master in [Cognitive Systems and Interactive Media](degree_name)
+      - Give me information about the bachelor in [Biomedical Engineering](degree_name)
+      - What is the master in [SMC](degree_name) about?
+      - What is the master in [Music Computing](degree_name) about?
+      - What is the master in [Sound Computing](degree_name) about?
+      - What is the master in [sound and music computing](degree_name) about?
+      - Give me information about the bachelor in [computer engineering](degree_name)
+      - Give me details about the bachelor in [biomedical engineering](degree_name)
+      - Give me details about the bachelor in [telecommunications](degree_name)
+      - Give me details about the bachelor in [Telecommunications Network Engineering](degree_name)
+      - Give me details about the bachelor in [Network Engineering](degree_name)
+      - Give me details about the bachelor in [Audiovisual Systems Engineering](degree_name)
+      - Give me details about the bachelor in [Audio Engineering](degree_name)
+      - Give me details about the bachelor in [Mathematical Engineering in Data Science](degree_name)
+      - Give me details about the bachelor in [Mathematics](degree_name)
+      - Give me details about the bachelor in [Data Science](degree_name)
+      - Give me info about the master in [Cognitive Systems and Interactive Media](degree_name)
+      - Give me info about the master in [Cognitive Systems](degree_name)
+      - Give me info about the master in [Interactive Systems](degree_name)
+      - Give me info about the master in [Intelligent Interactive Systems](degree_name)
+      - Give me details about the master in [Brain and Cognition](degree_name)
+      - Give me details about the master in [Cognition](degree_name)
+      - Give me details about the master in [Computational Biomedical Engineering](degree_name)
+      - Give me details about the master in [Computer Vision](degree_name)
+      - Give me details about the master in [Digital Humanities and Heritage](degree_name)
+      - Give me details about the master in [Digital Humanities](degree_name)
+      - Give me details about the master in [Artificial Intelligence](degree_name)
+      - Give me details about the master in [AI](degree_name)
+      - Give me details about the master in [Videogames: Design, Creation and Programming](degree_name)
+      - Give me details about the master in [Videogames](degree_name)
+      - Give me details about the master in [Video games](degree_name)
+      - Give me details about the master in [Innovation, Strategy and Entrepreuneurship](degree_name)
+      - Give me details about the master in [Innovation](degree_name)
+      - Give me details about the master in [Strategy](degree_name)
+      - Give me details about the master in [Entrepreuneurship](degree_name)
+      - Give me details about the PhD in [Information and Communication Technologies](degree_name)
+      - Give me details about the PhD in [ICT](degree_name)
+      - Give me details about the PhD in [IT](degree_name)
+      - Give me details about the PhD in [Communication](degree_name)
+
+  - intent: give_department_desc
+    examples: |
+      - What does the [MTG](department) do?
+      - What kind of research does the [UBICALAB](department) do?
+      - Give me information about the [IP4EC](department)
+
+  - intent: give_floor
+    examples: |
+      - In which floor?
+      - In which floor is [Xavier Serra](person_name) located?
+      - In which floor
+
+  #### Degrees synonyms
+
+  - synonym: Sound and Music Computing
+    examples: |
+      - SMC
+      - Music Computing
+      - Sound Computing
+
+  - synonym: Telecommunications Network Engineering
+    examples: |
+      - Telecommunications
+      - Network engineering
+
+  - synonym: Audiovisual Systems Engineering
+    examples: |
+      - Audio engineering
+
+  - synonym: Mathematical Engineering in Data Science
+    examples: |
+      - Data Science
+      - Mathematics
+
+  - synonym: Cognitive Systems and Interactive Media
+    examples: |
+      - Cognitive Systems
+      - Interactive Media
+
+  - synonym: Intelligent Interactive Systems
+    examples: |
+      - Interactive Systems
+
+  - synonym: Brain and Cognition
+    examples: |
+      - Cognition
+
+  - synonym: Digital Humanities and Heritage
+    examples: |
+      - Digital Humanities
+
+  - synonym: Artificial Intelligence
+    examples: |
+      - AI
+
+  - synonym: Videogames Design Creation and Programming
+    examples: |
+      - Videogames
+      - Video games
+
+  - synonym: Innovation Strategy and Entrepreuneurship
+    examples: |
+      - Innovation
+      - Strategy
+      - Entrepreuneurship
+
+  - synonym: Information and Communication Technologies
+    examples: |
+      - ICT
+      - IT
+      - Communication
+
+  ### Research groups synonyms
+  - synonym: MTG
+    examples: |
+      - Music and Technology Group
+      - Music Technology department
+
+  - synonym: AI&ML
+    examples: |
+      - Artificial Intelligence and Machine Learning Group
+      - AI and ML
+
+  - synonym: BERG
+    examples: |
+      - Biomedical Electronics Research Group
+
+  - synonym: CMTECH
+    examples: |
+      - Cognitive Media Technologies group
+
+  - synonym: IP4EC
+    examples: |
+      - Image processing for enhanced cinematography
+
+  - synonym: IPG
+    examples: |
+      - Image processing group
+
+  - synonym: ITC
+    examples: |
+      - Information Theory and Coding Group
+
+  - synonym: ITG
+    examples: |
+      - Interactive Technologies Group
+
+  - synonym: NETS
+    examples: |
+      - Network Technologies and Strategies Group
+
+  - synonym: NTSA
+    examples: |
+      - Nonlinear Time Series Analysis Group
+
+  - synonym: Physense
+    examples: |
+      - Sensing in Physiology and Biomedicine Group
+
+  - synonym: Research_Service
+    examples: |
+      - Research Service
+
+  - synonym: SIMBIOsys
+    examples: |
+      - Simulation Imaging and Modelling for Biomedical Systems
+
+  - synonym: TALN
+    examples: |
+      - Natural Language Processing
+
+  - synonym: TIDE
+    examples: |
+      - Interactive & Distributed Technologies for Education
+
+  - synonym: UBICALAB
+    examples: |
+      - Ubiquitous Computing Applications Lab
+
+  - synonym: UGA_TIC
+    examples: |
+      - UGA TIC
+      - Polytecnic School
+
+  - synonym: WN
+    examples: |
+      - Wireless Networking Group
+
+  - synonym: WSSC
+    examples: |
+      - Web Science and Social Computing
+
+  # Type of intents we should take into account:
+  #- Know about DTIC degrees
+  #- Know about DTIC masters
+  #- Know about staff office.
+  #- Know about staff department
+  #- Know staff building.
+  #- Know about staff name.
+  #- Know staff courses taught.

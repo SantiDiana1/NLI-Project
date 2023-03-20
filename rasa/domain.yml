@@ -1,0 +1,79 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - list_dtic_degrees
+  - give_degree_desc
+  - give_department_desc
+  - give_person_location
+  - give_person_department
+  - list_dpt_people
+  - give_floor
+entities:
+  - degree_name
+  - person_name
+  - PERSON
+  - department
+  - room
+
+slots:
+  degree_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: degree_name
+
+  person_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: person_name
+
+  room:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: room
+
+responses:
+  utter_greet:
+    - text: "Hey! How are you?"
+
+  utter_cheer_up:
+    - text: "Here is something to cheer you up:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+    - text: "Did that help you?"
+
+  utter_happy:
+    - text: "Great, carry on!"
+
+  utter_goodbye:
+    - text: "Bye"
+
+  utter_iamabot:
+    - text: "I am a bot, powered by Rasa."
+
+actions:
+  - action_list_dtic_degrees
+  - action_give_degree_desc
+  - action_give_department_desc
+  - action_give_person_location
+  - action_give_person_department
+  - action_list_dpt_people
+  - action_clear_slots
+  - action_give_floor
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

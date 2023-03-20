@@ -1,0 +1,81 @@
+version: "3.1"
+
+stories:
+  - story: happy path
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
+
+  - story: sad path 1
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
+
+  - story: sad path 2
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: deny
+      - action: utter_goodbye
+
+  - story: dtic degrees path 1
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: list_dtic_degrees
+      - action: action_list_dtic_degrees
+      
+
+  - story: dtic degrees path 2
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: give_degree_desc
+      - action: action_give_degree_desc
+      
+   
+  - story: find person department
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: give_person_department
+      - action: action_give_person_department
+
+  - story: list people in department
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: list_dpt_people
+      - action: action_list_dpt_people
+    
+
+  - story: department description
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: give_department_desc
+      - action: action_give_department_desc
+      
+
+  - story: ask_room
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: give_person_location
+    - action: action_give_person_location
+    
+      
+  - story: ask_floor
+    steps: 
+    - intent: give_floor
+    - action: action_give_floor
